@@ -1,0 +1,12 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file>UpgradeRes/image/base/background.png</file>
+		<file>UpgradeRes/image/base/floor.png</file>
+		<file>UpgradeRes/image/base/game.png</file>
+		<file>UpgradeRes/image/base/seat4_1.png</file>
+		<file>UpgradeRes/image/base/seat4_2.png</file>
+		<file>UpgradeRes/image/base/seat4_3.png</file>
+		<file>UpgradeRes/image/base/seat4_4.png</file>
+		<file>UpgradeRes/image/base/table4.png</file>
+	</qresource>
+</RCC>

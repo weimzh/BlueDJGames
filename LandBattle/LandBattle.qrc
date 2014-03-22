@@ -1,0 +1,85 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file>LandBattleRes/image/base/floor.png</file>
+		<file>LandBattleRes/image/base/game.png</file>
+		<file>LandBattleRes/image/base/table4.png</file>
+		<file>LandBattleRes/image/base/seat4_1.png</file>
+		<file>LandBattleRes/image/base/seat4_2.png</file>
+		<file>LandBattleRes/image/base/seat4_3.png</file>
+		<file>LandBattleRes/image/base/seat4_4.png</file>
+		<file>LandBattleRes/image/base/table3.png</file>
+		<file>LandBattleRes/image/base/seat3_1.png</file>
+		<file>LandBattleRes/image/base/seat3_2.png</file>
+		<file>LandBattleRes/image/base/seat3_3.png</file>
+		<file>LandBattleRes/image/base/table2.png</file>
+		<file>LandBattleRes/image/base/seat2_1.png</file>
+		<file>LandBattleRes/image/base/seat2_2.png</file>
+		<file>LandBattleRes/image/base/background.png</file>
+		
+		<file>LandBattleRes/image/board2.png</file>
+		<file>LandBattleRes/image/board3.png</file>
+		<file>LandBattleRes/image/board4.png</file>
+		
+		<file>LandBattleRes/image/jq2board.png</file>
+		<file>LandBattleRes/image/jq3board.png</file>
+		<file>LandBattleRes/image/jq4board.png</file>
+		
+		<file>LandBattleRes/image/1_0.png</file>
+		<file>LandBattleRes/image/1_1.png</file>
+		<file>LandBattleRes/image/1_2.png</file>
+		<file>LandBattleRes/image/1_3.png</file>
+		<file>LandBattleRes/image/1_4.png</file>
+		<file>LandBattleRes/image/1_5.png</file>
+		<file>LandBattleRes/image/1_6.png</file>
+		<file>LandBattleRes/image/1_7.png</file>
+		<file>LandBattleRes/image/1_8.png</file>
+		<file>LandBattleRes/image/1_9.png</file>
+		<file>LandBattleRes/image/1_a.png</file>
+		<file>LandBattleRes/image/1_b.png</file>
+		<file>LandBattleRes/image/1_c.png</file>
+
+		<file>LandBattleRes/image/2_0.png</file>
+		<file>LandBattleRes/image/2_1.png</file>
+		<file>LandBattleRes/image/2_2.png</file>
+		<file>LandBattleRes/image/2_3.png</file>
+		<file>LandBattleRes/image/2_4.png</file>
+		<file>LandBattleRes/image/2_5.png</file>
+		<file>LandBattleRes/image/2_6.png</file>
+		<file>LandBattleRes/image/2_7.png</file>
+		<file>LandBattleRes/image/2_8.png</file>
+		<file>LandBattleRes/image/2_9.png</file>
+		<file>LandBattleRes/image/2_a.png</file>
+		<file>LandBattleRes/image/2_b.png</file>
+		<file>LandBattleRes/image/2_c.png</file>
+
+		<file>LandBattleRes/image/3_0.png</file>
+		<file>LandBattleRes/image/3_1.png</file>
+		<file>LandBattleRes/image/3_2.png</file>
+		<file>LandBattleRes/image/3_3.png</file>
+		<file>LandBattleRes/image/3_4.png</file>
+		<file>LandBattleRes/image/3_5.png</file>
+		<file>LandBattleRes/image/3_6.png</file>
+		<file>LandBattleRes/image/3_7.png</file>
+		<file>LandBattleRes/image/3_8.png</file>
+		<file>LandBattleRes/image/3_9.png</file>
+		<file>LandBattleRes/image/3_a.png</file>
+		<file>LandBattleRes/image/3_b.png</file>
+		<file>LandBattleRes/image/3_c.png</file>
+
+		<file>LandBattleRes/image/4_0.png</file>
+		<file>LandBattleRes/image/4_1.png</file>
+		<file>LandBattleRes/image/4_2.png</file>
+		<file>LandBattleRes/image/4_3.png</file>
+		<file>LandBattleRes/image/4_4.png</file>
+		<file>LandBattleRes/image/4_5.png</file>
+		<file>LandBattleRes/image/4_6.png</file>
+		<file>LandBattleRes/image/4_7.png</file>
+		<file>LandBattleRes/image/4_8.png</file>
+		<file>LandBattleRes/image/4_9.png</file>
+		<file>LandBattleRes/image/4_a.png</file>
+		<file>LandBattleRes/image/4_b.png</file>
+		<file>LandBattleRes/image/4_c.png</file>
+
+		<file>LandBattleRes/image/pigeon.png</file>
+	</qresource>
+</RCC>

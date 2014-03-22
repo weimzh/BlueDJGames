@@ -1,0 +1,241 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file>InterlinkRes/image/base/background.png</file>
+		<file>InterlinkRes/image/base/game.png</file>
+		<file>InterlinkRes/image/base/floor.png</file>
+		<file>InterlinkRes/image/base/table4.png</file>
+		<file>InterlinkRes/image/base/seat4_1.png</file>
+		<file>InterlinkRes/image/base/seat4_2.png</file>
+		<file>InterlinkRes/image/base/seat4_3.png</file>
+		<file>InterlinkRes/image/base/seat4_4.png</file>
+		<file>InterlinkRes/image/base/table2.png</file>
+		<file>InterlinkRes/image/base/seat2_1.png</file>
+		<file>InterlinkRes/image/base/seat2_2.png</file>
+
+        <file>InterlinkRes/image/h/00.png</file>
+        <file>InterlinkRes/image/h/01.png</file>
+        <file>InterlinkRes/image/h/02.png</file>
+        <file>InterlinkRes/image/h/03.png</file>
+        <file>InterlinkRes/image/h/04.png</file>
+        <file>InterlinkRes/image/h/05.png</file>
+        <file>InterlinkRes/image/h/06.png</file>
+        <file>InterlinkRes/image/h/07.png</file>
+        <file>InterlinkRes/image/h/08.png</file>
+        <file>InterlinkRes/image/h/09.png</file>
+        
+        <file>InterlinkRes/image/h/10.png</file>
+        <file>InterlinkRes/image/h/11.png</file>
+        <file>InterlinkRes/image/h/12.png</file>
+        <file>InterlinkRes/image/h/13.png</file>
+        <file>InterlinkRes/image/h/14.png</file>
+        <file>InterlinkRes/image/h/15.png</file>
+        <file>InterlinkRes/image/h/16.png</file>
+        <file>InterlinkRes/image/h/17.png</file>
+        <file>InterlinkRes/image/h/18.png</file>
+        <file>InterlinkRes/image/h/19.png</file>
+        
+        <file>InterlinkRes/image/h/20.png</file>
+        <file>InterlinkRes/image/h/21.png</file>
+        <file>InterlinkRes/image/h/22.png</file>
+        <file>InterlinkRes/image/h/23.png</file>
+        <file>InterlinkRes/image/h/24.png</file>
+        <file>InterlinkRes/image/h/25.png</file>
+        <file>InterlinkRes/image/h/26.png</file>
+        <file>InterlinkRes/image/h/27.png</file>
+        <file>InterlinkRes/image/h/28.png</file>
+        <file>InterlinkRes/image/h/29.png</file>
+        
+        <file>InterlinkRes/image/h/30.png</file>
+        <file>InterlinkRes/image/h/31.png</file>
+        <file>InterlinkRes/image/h/32.png</file>
+        <file>InterlinkRes/image/h/33.png</file>
+        <file>InterlinkRes/image/h/34.png</file>
+        <file>InterlinkRes/image/h/35.png</file>
+        <file>InterlinkRes/image/h/36.png</file>
+        <file>InterlinkRes/image/h/37.png</file>
+        <file>InterlinkRes/image/h/38.png</file>
+        <file>InterlinkRes/image/h/39.png</file>
+        
+        <file>InterlinkRes/image/h/40.png</file>
+        <file>InterlinkRes/image/h/41.png</file>
+        <file>InterlinkRes/image/h/42.png</file>
+        <file>InterlinkRes/image/h/43.png</file>
+        <file>InterlinkRes/image/h/44.png</file>
+        <file>InterlinkRes/image/h/45.png</file>
+        <file>InterlinkRes/image/h/46.png</file>
+        <file>InterlinkRes/image/h/47.png</file>
+        <file>InterlinkRes/image/h/48.png</file>
+        <file>InterlinkRes/image/h/49.png</file>
+        
+        <file>InterlinkRes/image/h/50.png</file>
+        <file>InterlinkRes/image/h/51.png</file>
+        <file>InterlinkRes/image/h/52.png</file>
+        <file>InterlinkRes/image/h/53.png</file>
+        <file>InterlinkRes/image/h/54.png</file>
+        <file>InterlinkRes/image/h/55.png</file>
+        <file>InterlinkRes/image/h/56.png</file>
+        <file>InterlinkRes/image/h/57.png</file>
+        <file>InterlinkRes/image/h/58.png</file>
+        <file>InterlinkRes/image/h/59.png</file>
+        
+        <file>InterlinkRes/image/h/60.png</file>
+        <file>InterlinkRes/image/h/61.png</file>
+        <file>InterlinkRes/image/h/62.png</file>
+        <file>InterlinkRes/image/h/63.png</file>
+        <file>InterlinkRes/image/h/64.png</file>
+        <file>InterlinkRes/image/h/65.png</file>
+        <file>InterlinkRes/image/h/66.png</file>
+        <file>InterlinkRes/image/h/67.png</file>
+        <file>InterlinkRes/image/h/68.png</file>
+        <file>InterlinkRes/image/h/69.png</file>
+        
+        <file>InterlinkRes/image/h/70.png</file>
+        <file>InterlinkRes/image/h/71.png</file>
+        <file>InterlinkRes/image/h/72.png</file>
+        <file>InterlinkRes/image/h/73.png</file>
+        <file>InterlinkRes/image/h/74.png</file>
+        <file>InterlinkRes/image/h/75.png</file>
+        <file>InterlinkRes/image/h/76.png</file>
+        <file>InterlinkRes/image/h/77.png</file>
+        <file>InterlinkRes/image/h/78.png</file>
+        <file>InterlinkRes/image/h/79.png</file>
+        
+        <file>InterlinkRes/image/h/80.png</file>
+        <file>InterlinkRes/image/h/81.png</file>
+        <file>InterlinkRes/image/h/82.png</file>
+        <file>InterlinkRes/image/h/83.png</file>
+        <file>InterlinkRes/image/h/84.png</file>
+        <file>InterlinkRes/image/h/85.png</file>
+        <file>InterlinkRes/image/h/86.png</file>
+        <file>InterlinkRes/image/h/87.png</file>
+        <file>InterlinkRes/image/h/88.png</file>
+        <file>InterlinkRes/image/h/89.png</file>
+        
+        <file>InterlinkRes/image/h/90.png</file>
+        <file>InterlinkRes/image/h/91.png</file>
+        <file>InterlinkRes/image/h/92.png</file>
+        <file>InterlinkRes/image/h/93.png</file>
+        <file>InterlinkRes/image/h/94.png</file>
+        <file>InterlinkRes/image/h/95.png</file>
+        <file>InterlinkRes/image/h/96.png</file>
+        <file>InterlinkRes/image/h/97.png</file>
+        <file>InterlinkRes/image/h/98.png</file>
+        <file>InterlinkRes/image/h/99.png</file>
+        
+        <file>InterlinkRes/image/h/back.png</file>
+        <file>InterlinkRes/image/h/null.png</file>
+        
+        <file>InterlinkRes/image/v/00.png</file>
+        <file>InterlinkRes/image/v/01.png</file>
+        <file>InterlinkRes/image/v/02.png</file>
+        <file>InterlinkRes/image/v/03.png</file>
+        <file>InterlinkRes/image/v/04.png</file>
+        <file>InterlinkRes/image/v/05.png</file>
+        <file>InterlinkRes/image/v/06.png</file>
+        <file>InterlinkRes/image/v/07.png</file>
+        <file>InterlinkRes/image/v/08.png</file>
+        <file>InterlinkRes/image/v/09.png</file>
+        
+        <file>InterlinkRes/image/v/10.png</file>
+        <file>InterlinkRes/image/v/11.png</file>
+        <file>InterlinkRes/image/v/12.png</file>
+        <file>InterlinkRes/image/v/13.png</file>
+        <file>InterlinkRes/image/v/14.png</file>
+        <file>InterlinkRes/image/v/15.png</file>
+        <file>InterlinkRes/image/v/16.png</file>
+        <file>InterlinkRes/image/v/17.png</file>
+        <file>InterlinkRes/image/v/18.png</file>
+        <file>InterlinkRes/image/v/19.png</file>
+        
+        <file>InterlinkRes/image/v/20.png</file>
+        <file>InterlinkRes/image/v/21.png</file>
+        <file>InterlinkRes/image/v/22.png</file>
+        <file>InterlinkRes/image/v/23.png</file>
+        <file>InterlinkRes/image/v/24.png</file>
+        <file>InterlinkRes/image/v/25.png</file>
+        <file>InterlinkRes/image/v/26.png</file>
+        <file>InterlinkRes/image/v/27.png</file>
+        <file>InterlinkRes/image/v/28.png</file>
+        <file>InterlinkRes/image/v/29.png</file>
+        
+        <file>InterlinkRes/image/v/30.png</file>
+        <file>InterlinkRes/image/v/31.png</file>
+        <file>InterlinkRes/image/v/32.png</file>
+        <file>InterlinkRes/image/v/33.png</file>
+        <file>InterlinkRes/image/v/34.png</file>
+        <file>InterlinkRes/image/v/35.png</file>
+        <file>InterlinkRes/image/v/36.png</file>
+        <file>InterlinkRes/image/v/37.png</file>
+        <file>InterlinkRes/image/v/38.png</file>
+        <file>InterlinkRes/image/v/39.png</file>
+        
+        <file>InterlinkRes/image/v/40.png</file>
+        <file>InterlinkRes/image/v/41.png</file>
+        <file>InterlinkRes/image/v/42.png</file>
+        <file>InterlinkRes/image/v/43.png</file>
+        <file>InterlinkRes/image/v/44.png</file>
+        <file>InterlinkRes/image/v/45.png</file>
+        <file>InterlinkRes/image/v/46.png</file>
+        <file>InterlinkRes/image/v/47.png</file>
+        <file>InterlinkRes/image/v/48.png</file>
+        <file>InterlinkRes/image/v/49.png</file>
+        
+        <file>InterlinkRes/image/v/50.png</file>
+        <file>InterlinkRes/image/v/51.png</file>
+        <file>InterlinkRes/image/v/52.png</file>
+        <file>InterlinkRes/image/v/53.png</file>
+        <file>InterlinkRes/image/v/54.png</file>
+        <file>InterlinkRes/image/v/55.png</file>
+        <file>InterlinkRes/image/v/56.png</file>
+        <file>InterlinkRes/image/v/57.png</file>
+        <file>InterlinkRes/image/v/58.png</file>
+        <file>InterlinkRes/image/v/59.png</file>
+        
+        <file>InterlinkRes/image/v/60.png</file>
+        <file>InterlinkRes/image/v/61.png</file>
+        <file>InterlinkRes/image/v/62.png</file>
+        <file>InterlinkRes/image/v/63.png</file>
+        <file>InterlinkRes/image/v/64.png</file>
+        <file>InterlinkRes/image/v/65.png</file>
+        <file>InterlinkRes/image/v/66.png</file>
+        <file>InterlinkRes/image/v/67.png</file>
+        <file>InterlinkRes/image/v/68.png</file>
+        <file>InterlinkRes/image/v/69.png</file>
+        
+        <file>InterlinkRes/image/v/70.png</file>
+        <file>InterlinkRes/image/v/71.png</file>
+        <file>InterlinkRes/image/v/72.png</file>
+        <file>InterlinkRes/image/v/73.png</file>
+        <file>InterlinkRes/image/v/74.png</file>
+        <file>InterlinkRes/image/v/75.png</file>
+        <file>InterlinkRes/image/v/76.png</file>
+        <file>InterlinkRes/image/v/77.png</file>
+        <file>InterlinkRes/image/v/78.png</file>
+        <file>InterlinkRes/image/v/79.png</file>
+        
+        <file>InterlinkRes/image/v/80.png</file>
+        <file>InterlinkRes/image/v/81.png</file>
+        <file>InterlinkRes/image/v/82.png</file>
+        <file>InterlinkRes/image/v/83.png</file>
+        <file>InterlinkRes/image/v/84.png</file>
+        <file>InterlinkRes/image/v/85.png</file>
+        <file>InterlinkRes/image/v/86.png</file>
+        <file>InterlinkRes/image/v/87.png</file>
+        <file>InterlinkRes/image/v/88.png</file>
+        <file>InterlinkRes/image/v/89.png</file>
+        
+        <file>InterlinkRes/image/v/90.png</file>
+        <file>InterlinkRes/image/v/91.png</file>
+        <file>InterlinkRes/image/v/92.png</file>
+        <file>InterlinkRes/image/v/93.png</file>
+        <file>InterlinkRes/image/v/94.png</file>
+        <file>InterlinkRes/image/v/95.png</file>
+        <file>InterlinkRes/image/v/96.png</file>
+        <file>InterlinkRes/image/v/97.png</file>
+        <file>InterlinkRes/image/v/98.png</file>
+        <file>InterlinkRes/image/v/99.png</file>
+        
+        <file>InterlinkRes/image/v/back.png</file>
+        <file>InterlinkRes/image/v/null.png</file>
+	</qresource>
+</RCC>

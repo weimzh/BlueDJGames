@@ -1,0 +1,111 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file>BaseRes/image/card/emotion.png</file>
+		<file>BaseRes/image/card/happy.png</file>
+		<file>BaseRes/image/card/angry.png</file>
+		<file>BaseRes/image/card/sad.png</file>
+		<file>BaseRes/image/card/laugh.png</file>
+		<file>BaseRes/image/card/cry.png</file>
+		<file>BaseRes/image/card/egg.png</file>
+		<file>BaseRes/image/card/flower.png</file>
+		<file>BaseRes/image/card/broadcast.png</file>
+		
+		<file>BaseRes/image/card/angel.png</file>
+		<file>BaseRes/image/card/clear.png</file>
+		<file>BaseRes/image/card/lose2.png</file>
+		<file>BaseRes/image/card/lucky.png</file>
+		<file>BaseRes/image/card/win2.png</file>
+		<file>BaseRes/image/card/win5.png</file>
+		<file>BaseRes/image/card/win10.png</file>
+		
+		<file>BaseRes/image/chat/clear.png</file>
+    	<file>BaseRes/image/chat/send.png</file>
+    	<file>BaseRes/image/chat/symbol.png</file>
+    	
+    	<file>BaseRes/image/chip/blue1.png</file>
+    	<file>BaseRes/image/chip/green1.png</file>
+    	<file>BaseRes/image/chip/red1.png</file>
+    	<file>BaseRes/image/chip/yellow1.png</file>
+    	<file>BaseRes/image/chip/blue2.png</file>
+    	<file>BaseRes/image/chip/green2.png</file>
+    	<file>BaseRes/image/chip/red2.png</file>
+    	<file>BaseRes/image/chip/yellow2.png</file>
+    	
+    	<file>BaseRes/image/hall/closeddoor.png</file>
+        <file>BaseRes/image/hall/openingdoor.png</file>
+    	<file>BaseRes/image/hall/AvatarFemale.png</file>
+        <file>BaseRes/image/hall/AvatarMale.png</file>
+        <file>BaseRes/image/hall/AvatarSecret.png</file>
+        <file>BaseRes/image/hall/IconMale.png</file>
+        <file>BaseRes/image/hall/IconFemale.png</file>
+        <file>BaseRes/image/hall/IconSecret.png</file>
+        <file>BaseRes/image/hall/ShowMale.gif</file>
+        <file>BaseRes/image/hall/ShowFemale.gif</file>
+        <file>BaseRes/image/hall/ShowSecret.gif</file>
+        <file>BaseRes/image/hall/break.png</file>
+        <file>BaseRes/image/hall/idle.png</file>
+        <file>BaseRes/image/hall/ready.png</file>
+        <file>BaseRes/image/hall/waiting.png</file>
+        <file>BaseRes/image/hall/forbidden.png</file>
+        <file>BaseRes/image/hall/folder.png</file>
+        <file>BaseRes/image/hall/folderup.png</file>
+        
+        <file>BaseRes/image/hall/bar/calladmin.png</file>
+        <file>BaseRes/image/hall/bar/gamesetup.png</file>
+        <file>BaseRes/image/hall/bar/issuemsg.png</file>
+        <file>BaseRes/image/hall/bar/quit.png</file>
+        <file>BaseRes/image/hall/bar/reconnect.png</file>
+        
+        <file>BaseRes/image/panel/color.png</file>
+    	<file>BaseRes/image/panel/help.png</file>
+    	
+    	<file>BaseRes/image/bonus/background.png</file>
+    	<file>BaseRes/image/mj/ting13.png</file>
+    	<file>BaseRes/image/mj/ting24.png</file>
+    	
+    	<file>BaseRes/image/clock/panel.png</file>
+    	<file>BaseRes/image/clock/down.png</file>
+    	<file>BaseRes/image/clock/left.png</file>
+    	<file>BaseRes/image/clock/up.png</file>
+    	<file>BaseRes/image/clock/right.png</file>
+    	
+    	<file>BaseRes/image/clock/0.png</file>
+    	<file>BaseRes/image/clock/1.png</file>
+    	<file>BaseRes/image/clock/2.png</file>
+    	<file>BaseRes/image/clock/3.png</file>
+    	<file>BaseRes/image/clock/4.png</file>
+    	<file>BaseRes/image/clock/5.png</file>
+    	<file>BaseRes/image/clock/6.png</file>
+    	<file>BaseRes/image/clock/7.png</file>
+    	<file>BaseRes/image/clock/8.png</file>
+    	<file>BaseRes/image/clock/9.png</file>
+    </qresource>
+    <qresource>
+		<file>BaseRes/image/desktop/toolbutton/s.png</file>
+		<file>BaseRes/image/desktop/toolbutton/h.png</file>
+		<file>BaseRes/image/desktop/toolbutton/c.png</file>
+		<file>BaseRes/image/desktop/toolbutton/d.png</file>
+		<file>BaseRes/image/desktop/toolbutton/chi.png</file>
+		<file>BaseRes/image/desktop/toolbutton/chu.png</file>
+		<file>BaseRes/image/desktop/toolbutton/gang.png</file>
+		<file>BaseRes/image/desktop/toolbutton/peng.png</file>
+		<file>BaseRes/image/desktop/toolbutton/ting.png</file>
+		<file>BaseRes/image/desktop/toolbutton/hu.png</file>
+		<file>BaseRes/image/desktop/toolbutton/qi.png</file>
+		<file>BaseRes/image/desktop/toolbutton/liang.png</file>
+		<file>BaseRes/image/desktop/toolbutton/chi_disabled.png</file>
+		<file>BaseRes/image/desktop/toolbutton/chu_disabled.png</file>
+		<file>BaseRes/image/desktop/toolbutton/gang_disabled.png</file>
+		<file>BaseRes/image/desktop/toolbutton/peng_disabled.png</file>
+		<file>BaseRes/image/desktop/toolbutton/ting_disabled.png</file>
+		<file>BaseRes/image/desktop/toolbutton/hu_disabled.png</file>
+		<file>BaseRes/image/desktop/toolbutton/qi_disabled.png</file>
+		<file>BaseRes/image/desktop/toolbutton/liang_disabled.png</file>
+		<file>BaseRes/image/desktop/toolbutton/down.png</file>
+		<file>BaseRes/image/desktop/toolbutton/left.png</file>
+		<file>BaseRes/image/desktop/toolbutton/arrange.png</file>
+		<file>BaseRes/image/desktop/toolbutton/tip.png</file>
+		<file>BaseRes/image/desktop/toolbutton/ntgray.png</file>
+		<file>BaseRes/image/desktop/toolbutton/ntred.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,27 @@
+1.下载安装编译QT
+首先下载相应平台的QT发行包http://www.trolltech.com/download/opensource.html
+windows用户需要特别注意：
+QT在windows平台上的发行包有两种格式，一种是.zip的，一种是.mingw.exe的。
+因为windows平台需要使用mingw编译QT库以及基于QT库的应用程序，所以如果你的机器上没有安装过mingw的话，
+第一次最好使用.mingw.exe格式的QT发行包进行安装，这样在安装QT时会自动检测本机是否已经安装了mingw,
+如果没有的话，会自动下载安装，并设置正确的环境变量。
+如果你的机器上已经安装有mingw，则可以直接下载.zip的发行版本，也可以手工下载mingw,详情请到http://www.mingw.org看说明。
+
+2.QT的配置(configure选项)
+编译QT时使用-qt-gif 以增加对gif格式图片的支持
+
+mac平台要增加-no-framework(不使用framework,而使用动态库)选项。
+如果需要支持universal binary的话，还要增加-universal(Qt4.1.0开始支持UB)选项。
+
+3.编译蓝迪游戏客户端：
+qmake时如果不加任何参数，则会将debug信息输出至log.txt文件。
+如需取消debug信息，则需在qmake时增加参数，即qmake "DEFINES+=QT_NO_DEBUG_OUTPUT"
+
+另外对mac用户，如果想要编译出来的蓝迪游戏客户端支持universal binary还需要更改所有工程文件中的下面这部分
+mac{
+#CONFIG			+= 	ppc x86
+}
+将CONFIG前面的井号去掉即可。
+
+最后需要注意的是make Hall后，还要make install一下，完成一些资源的拷贝动作。
+完整的编译步骤可以参考每个平台下的批处理程序(windows平台下是makewin.bat,mac平台是makemac,linux平台是makelinux).

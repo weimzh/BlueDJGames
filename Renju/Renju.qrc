@@ -1,0 +1,21 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file>RenjuRes/image/base/background.png</file>
+		<file>RenjuRes/image/base/game.png</file>
+		<file>RenjuRes/image/base/floor.png</file>
+		<file>RenjuRes/image/base/table2.png</file>
+		<file>RenjuRes/image/base/seat2_1.png</file>
+		<file>RenjuRes/image/base/seat2_2.png</file>
+		<file>RenjuRes/image/board.png</file>
+		<file>RenjuRes/image/black.png</file>
+		<file>RenjuRes/image/white.png</file>
+		<file>RenjuRes/image/sign_y.png</file>
+		<file>RenjuRes/image/sign_n.png</file>
+		<file>RenjuRes/image/sign_t0.png</file>
+		<file>RenjuRes/image/sign_t1.png</file>
+		<file>RenjuRes/image/winicon.png</file>
+		<file>RenjuRes/image/loseicon.png</file>
+		<file>RenjuRes/image/pigeon.png</file>
+		<file>RenjuRes/image/current.png</file>
+	</qresource>
+</RCC>

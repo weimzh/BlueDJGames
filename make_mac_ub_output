@@ -1,0 +1,159 @@
+#! /bin/bash
+
+if [ -e "Base" ]
+then
+cd "Base"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86" BaseStatic.pro
+make
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+cd ..
+fi
+
+if [ -e "Hall" ]
+then
+cd "Hall"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+make install
+cd ..
+fi
+
+if [ -e "UpdateHall" ]
+then
+cd "UpdateHall"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Blackjack" ]
+then
+cd "Blackjack"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Chaodip" ]
+then
+cd "Chaodip"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "ChineseChess" ]
+then
+cd "ChineseChess"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Chudd" ]
+then
+cd "Chudd"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "GBMahjong" ]
+then
+cd "GBMahjong"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "GDMahjong" ]
+then
+cd "GDMahjong"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "GongZhu" ]
+then
+cd "GongZhu"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Interlink" ]
+then
+cd "Interlink"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "LandBattle" ]
+then
+cd "LandBattle"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "LandLord" ]
+then
+cd "LandLord"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "NiuNiu" ]
+then
+cd "NiuNiu"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Renju" ]
+then
+cd "Renju"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Shisensho" ]
+then
+cd "Shisensho"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Suoha" ]
+then
+cd "Suoha"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Upgrade" ]
+then
+cd "Upgrade"
+qmake "DEFINES+=DJ_DEBUG_OUTPUT" "CONFIG+=release ppc x86"
+make
+cd ..
+fi
+
+if [ -e "Hall/build" ]
+then
+cd "Hall/build"
+rm -f *.a *.prl libBase.dylib libBase.1.dylib libBase.1.0.dylib
+mv libBase.1.0.0.dylib libBase.1.dylib
+fi
+
+
+

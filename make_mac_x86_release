@@ -1,0 +1,159 @@
+#! /bin/bash
+
+if [ -e "Base" ]
+then
+cd "Base"
+qmake "CONFIG+=release x86"
+make
+qmake "CONFIG+=release x86" BaseStatic.pro
+make
+qmake "CONFIG+=release x86"
+cd ..
+fi
+
+if [ -e "Hall" ]
+then
+cd "Hall"
+qmake "CONFIG+=release x86"
+make
+make install
+cd ..
+fi
+
+if [ -e "UpdateHall" ]
+then
+cd "UpdateHall"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Blackjack" ]
+then
+cd "Blackjack"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Chaodip" ]
+then
+cd "Chaodip"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "ChineseChess" ]
+then
+cd "ChineseChess"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Chudd" ]
+then
+cd "Chudd"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "GBMahjong" ]
+then
+cd "GBMahjong"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "GDMahjong" ]
+then
+cd "GDMahjong"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "GongZhu" ]
+then
+cd "GongZhu"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Interlink" ]
+then
+cd "Interlink"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "LandBattle" ]
+then
+cd "LandBattle"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "LandLord" ]
+then
+cd "LandLord"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "NiuNiu" ]
+then
+cd "NiuNiu"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Renju" ]
+then
+cd "Renju"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Shisensho" ]
+then
+cd "Shisensho"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Suoha" ]
+then
+cd "Suoha"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Upgrade" ]
+then
+cd "Upgrade"
+qmake "CONFIG+=release x86"
+make
+cd ..
+fi
+
+if [ -e "Hall/build" ]
+then
+cd "Hall/build"
+rm -f *.a *.prl libBase.dylib libBase.1.dylib libBase.1.0.dylib
+mv libBase.1.0.0.dylib libBase.1.dylib
+fi
+
+
+

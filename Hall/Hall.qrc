@@ -1,0 +1,35 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource>
+    	<file>HallRes/image/login.png</file>
+        
+    	<file>HallRes/image/bar/logo.png</file>
+        <file>HallRes/image/bar/home.png</file>
+        <file>HallRes/image/bar/info.png</file>
+        <file>HallRes/image/bar/setup.png</file>
+        
+        <file>HallRes/image/gameclass/poker.png</file>
+        <file>HallRes/image/gameclass/zhong.png</file>
+        <file>HallRes/image/gameclass/chess.png</file>
+        <file>HallRes/image/gameclass/duel.png</file>
+        <file>HallRes/image/gameclass/domino.png</file>
+        <file>HallRes/image/gameclass/single.png</file>
+        <file>HallRes/image/gameclass/others.png</file>
+        
+        <file>HallRes/image/chat/symbol.png</file>
+    	<file>HallRes/image/chat/send.png</file>
+    	<file>HallRes/image/chat/history.png</file>
+	</qresource>
+	<qresource>
+        <file>HallRes/image/style/PushButtonLeft.png</file>
+        <file>HallRes/image/style/PushButtonMid.png</file>
+        <file>HallRes/image/style/PushButtonRight.png</file>
+        <file>HallRes/image/style/PushButtonPressedLeft.png</file>
+        <file>HallRes/image/style/PushButtonPressedMid.png</file>
+        <file>HallRes/image/style/PushButtonPressedRight.png</file>
+        <file>HallRes/image/style/ArrowDown.png</file>
+        <file>HallRes/image/style/ArrowLeft.png</file>
+        <file>HallRes/image/style/ArrowRight.png</file>
+        <file>HallRes/image/style/ArrowUp.png</file>
+        <file>HallRes/image/style/DoubleArrowRight.png</file>
+	</qresource>
+</RCC>

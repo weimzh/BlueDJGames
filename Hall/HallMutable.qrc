@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource>
+        <file>HallRes/lang/Hall_zh_CN.qm</file>
+        <file>HallRes/lang/qt_zh_CN.qm</file>
+    </qresource>
+</RCC>

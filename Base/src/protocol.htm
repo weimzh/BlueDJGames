@@ -1,0 +1,295 @@
+<html>
+<head><meta http-equiv="content-type" content="text/html; charset=utf8">
+<title>蓝迪游戏协议说明</title></head>
+<body>
+<center><h1>蓝迪游戏协议说明</h1></center>
+<br>
+蓝迪游戏协议系北京蓝色迪杰科技有限公司(以下称蓝迪公司)制定的网络游戏协议,用于在游戏客户端和游戏服务器间交换数据.蓝迪公司
+拥有本协议的版权,但您可以在GPL(GNU General Public License)下使用本协议,超出GPL范围的使用需要从蓝迪公司获取相应的许可. 蓝迪公司保留全部权利;
+<br><br>
+蓝迪公司在对协议修改升级后会及时放出,对此需要您关注蓝迪公司主页(www.bluedj.com),如无额外的服务协议,我们不会以任何形式单独通知您. 本文档随蓝迪游戏源代码一同发布, 任何人未经蓝迪公司授权不得更改本文档的内容.
+<br><br>
+现在我们将就蓝迪游戏协议做简单说明,蓝迪游戏协议的总体框架在protocol.h中定义, 各游戏的独特协议在相应的profile.h中定义,例如斗地主是 ddzprofile.h;
+<br><br>
+1.协议头 和 ACL<br>
+<font color=#0000FF>在protocol.h中首先定义了蓝迪游戏的协议头,所有协议数据包都必需以此结构为前导:</font><br>
+typedef struct __tagDJGameProtocol<br>
+{<br>
+	unsigned char	chTotalLen; //本协议包的总长度,不能大于DJGAME_MAX_PROTOCOL_SIZE<br>
+	unsigned char	chType;	//协议类型<br>
+	unsigned char	chSubType;	//子类型<br>
+	unsigned char	chLanguage;	//协议语言(也可用于传输其他信息,例如游戏层的桌号)<br>
+	unsigned char	chBuf[1];	//协议数据,数据结构取决于chType;<br>
+}DJGameProtocol,*PDJGameProtocol;<br><br>
+
+蓝迪游戏协议是客户端问答协议,对于客户端的每个请求包,服务器均有明确的终止符号: ACL数据包.ACL包长度就是协议头的长度(5字节),其中chType = DJGAME_PROTOCOL_TYPE_ACL; chBuf[0] 中是一个ACL状态 (ACL Status), 可以使用 DJGAME_SUCCESS(status) 来检查请求是否得到服务器的成功处理; 在某些特定ACL中, chSubType, chLanguage被用来传输额外数据, 一般情况下检查status即可.<br><br>
+还要指出的是客户端调用API建立连接(比如 connect(...) )被服务器认为是一种请求,因此同样发送一个ACL包. 这是为了让客户端在连接成功后能够直接"验明证身",确保是联接到了蓝迪游戏的服务器;<br><Br>
+
+(为什么是ACL? 没有什么特殊含义. 网络协议中有ACK包,蓝迪问答终止数据包和它有类似但也有明显区别,因此称之为ACL)
+<Br><br>
+
+2.协议层<Br>
+蓝迪游戏协议是一个4层协议,我们从客户端的视角将它称之为 : <br><br>
+大厅层<br>
+游戏层<br>
+进度层<br>
+游戏自定义层<br><br>
+
+协议层由上到下,从简单趋于复杂; 大厅协议层主要完成与游戏无关的数据交换,例如获取游戏或服务器列表,登录,聊天,请求建立P2P连接; 大厅协议层的主要标志是协议头中的 chType != DJGAME_PROTOCOL_TYPE_SUBMIT_GAMEDATA (或者 DJGAME_PROTOCOL_TYPE_GAMEDATA). <br><br>
+
+<font color=#0000FF>对于大厅协议层,协议数据包通常分为两部分, 协议头+协议数据;</font> 例如 客户端想完成玩家登录 那么协议头数据后应该跟随 LOGININFO结构; 假设服务器端将该数据包放在buffer中,则 : <br>
+DJGameProtocol *pprotocol = (DJGameProtocol*)buffer;<br>
+if(pprotocol->chType == DJGAME_PROTOCOL_TYPE_LOGIN)<br>
+{<br>
+	LOGININFO      *plogin = (LOGININFO *)pprotocol->chBuf;<br>
+	.....<br>
+}<br>
+<br><br>
+您可以参考protocol.h中的各种协议类型定义,这里只特别说明以下几种协议类型 : <br>
+DJGAME_PROTOCOL_TYPE_P2P<br>
+本类型的协议帮助2个客户端建立互信,并最终实现P2P联接,例如传输文件,语音聊天都是建立在P2P联接的基础上的,但出于安全的考虑P2P的联接必需建立在互信的基础上, 发起方必需首先发送基于本类型的DJGAME_PROTOCOL_P2P_SUBTYPE_REQUEST , 并将对方的userid做为协议数据放到协议头的协议数据部分 , 例如客户端想和userid = 1的用户建立P2P联接,那么他需要发送:<br><br>
+
+0x09 //chTotalLen = sizeof(DJGameProtocol)+sizeof(USERID)<br>
+0x0B //chType = DJGAME_PROTOCOL_TYPE_P2P<br>
+0x01 //chSubType = DJGAME_PROTOCOL_P2P_SUBTYPE_REQUEST<br>
+0x00 //chLanguage = 0 ,本类型没有使用该字节<br>
+0x01 0x00 0x00 0x00 //chBuf=USERID = 1<br>
+0x00 //因为计算chTotalLen时并没有减去DJGameProtocol中chBuf已有的一个字节的,因此通常多一个字节 :)<br><br>
+
+需要特别注意的是,从服务器端的效率考虑,我们的协议是LB协议,低字节在前,高字节在后,客户端发送int short等多字节数据时必需要注意字节顺序<br><br>
+服务器收到上面的数据包后,会将其中的userid改为请求方的userid,然后发送给目标客户端,目标客户端收到该请求后会请玩家确认是否同意建立P2P联接,如果玩家同意,那么将发送 chSubType = DJGAME_PROTOCOL_P2P_SUBTYPE_AGREE 的协议包;
+客户端发送时,只需要给出相应数据结构中的 client(请求方的userid)和shPort(P2P端口),其余由服务器方填充并发送给请求方,这样请求方就获得了目标玩家的IP地址和端口,就可以建立P2P联接了;<br><br>
+如果双方之前已经建立了互信,这个过程可以简化为请求方直接发送 DJGAME_PROTOCOL_P2P_SUBTYPE_AGREE,事实上DJGAME_PROTOCOL_P2P_SUBTYPE_AGREE就是将发送者暴露给 数据结构DJGameP2P中client所指定的用户.<br><Br>
+<br>
+DJGAME_PROTOCOL_TYPE_SETFEATURE<br><br>
+这是对协议的设定,蓝迪游戏协议是可调整的协议,客户端有多种协议模式可以选择<br>
+typedef struct __tagDJGameProtocolFeature<br>
+{<br>
+	unsigned char 		chProtocolOption;		//协议选项<br>
+	unsigned char 		chProtocolVersion;		//协议版本<br>
+	unsigned char 		chBuf[8];			//预留<br>
+}DJGameProtocolFeature,*PDJGameProtocolFeature;<br><br>
+chProtocolVersion可以选择使用哪个版本的协议,目前分V1和V2; 我们强烈建议使用最新的协议版本(例如现在是2),这个feature主要是从协议升级后的兼容性来考虑的,可以确保当蓝迪协议升级后原有的客户端仍可使用.<br>
+chProtocolOption,对于协议的调整; 目前定义了3个选项 : <br>
+DJGAME_PROTOCOL_OPTION_SHORT		//使用短协议,设置以后服务器在发送玩家信息时将只发送最小必需数据,可以大幅度降低数据传输量, 通常只有手机客户端才需要(也是蓝迪建议的手机协议)设置<br>
+DJGAME_PROTOCOL_OPTION_CLOSEBROADCAST //关闭广播消息, 在客户端认为可以的情况下关闭广播消息(比如游戏进行中或长时间无用户操作),通常也只有手机客户端才会使用;<br>
+DJGAME_PROTOCOL_OPTION_COMPRESS		//压缩传输, 这也可以降低数据传输量,但目前服务器端并没有支持该选项;<br>
+对于桌面用户而言,通常只需要设置一下协议版本就可以了.<br>
+<br><br>
+游戏协议层,主要完成和游戏相关的通用动作(例如坐下,站起,举手开始.....),游戏协议层的标志是 chType = DJGAME_PROTOCOL_TYPE_SUBMIT_GAMEDATA,而具体的动作取决与 chSubType,在protocol.h中定义的一些 SUBTYPE实际上已经废弃(V1升级到V2造成的),通常会有同名(或类似名字)但加上版本字的subtype取代,例如 DJGAME_PROTOCOL_SUBTYPE_GAMEOVER 已经被 DJGAME_PROTOCOL_SUBTYPE_GAMEOVER2 取代, DJGAME_PROTOCOL_SUBTYPE_WAIT_USER已经被DJGAME_PROTOCOL_SUBTYPE_WAIT_USER2取代,DJGAME_PROTOCOL_SUBTYPE_GAMEDATA已经被DJGAME_PROTOCOL_SUBTYPE_GAMETRACE2取代,您需要留意这些变化并使用最新的协议;
+(已经废弃的数据结构为什么没有从protocol.h中删除? 这是因为我们要考虑升级后对旧版的兼容--例如尽管V2协议已经推出4个月了,但您依然可以使用1.x的客户端进来玩游戏--所以这些数据结构必需保留到蓝迪不再兼容它为止)<br><Br>
+
+<font color=#0000FF>大厅协议层在客户端的Hall中完成,大家可以参考其中的源代码;</font><br><br><br><Br>
+<font color=#0000FF>和大厅协议层不同的是,游戏协议层数据开始和具体游戏相关; 而一个服务器可以安装多个游戏,因此游戏协议层需要自己的前导数据结构 :</font><br>
+typedef struct __tagGameDataHead<br>
+{<br>
+	unsigned char chGameClass;<br>
+	unsigned char chGame;<br>
+	unsigned char chBuf[1];<br>
+}GameDataHead,*PGameDataHead;<br><br>
+
+每个游戏都拥有唯一的ID,这个ID是2字节,一个字节用来表明游戏类别, 目前已经定义的游戏类别有 :<br>
+DJGAME_GAMECLASS_CHESS		//棋类游戏<br>
+DJGAME_GAMECLASS_CARDS		//纸牌类游戏<br>
+DJGAME_GAMECLASS_MAHJONG		//骨牌类游戏<br>
+DJGAME_GAMECLASS_COMBAT		//战斗类游戏<br>
+DJGAME_GAMECLASS_SINGLE		//单人游戏<br>
+DJGAME_GAMECLASS_OTHER		//其他游戏<br>
+这里要特别说明一下其他游戏类,每当一个新的游戏类被定义时,它将使用已有的其他游戏类ID,而其他游戏类将被重新分配ID; 这同样是从兼容性来考虑的, 当服务器端新增游戏类别后,原有的客户端尚不知道,因此如果为新类别分配新ID将造成旧的客户端收到无法识别的游戏ID,而采用上面的机制可以保证旧的客户端将新增游戏类别中的游戏归入其他游戏类, 避免不必要的错误和混乱.<br><br>
+
+游戏ID中的第2个字节是基于特定游戏类别的顺序号,和一字节共同唯一确定一个游戏. 例如 拖拉机游戏的ID是 0x0201,0x02是纸牌类的ID,0x01是拖拉机在纸牌类游戏中的顺序号<br><br>
+
+游戏协议层的各种子协议(SUBTYPE)有很多种, 他们都是从不同游戏中抽象出来的,是各种游戏的共同点. 比如坐下,站起,邀请别人加入,游戏结束后的成绩公布等等...<font color=#0000FF>客户端在Base库中完成了这部分协议</font><Br><br>
+
+游戏协议层的子协议绝大多数都非常简单,最复杂的就是用户数据,下面以此为例子作讲述.<br>
+一个标准的用户数据包结构如下(如果已经设置使用 短协议,则数据结构将变为ShortUserDes,参看protocol.h定义即可)<br>
+typedef struct __tagNormalUserDes<br>
+{<br>
+	unsigned char 			chGeneralUserDesLen; //玩家基本信息长度<br>
+	unsigned char 			chGameNormalDataLen;//游戏标准数据长度<br>
+	unsigned char 			chGameNormalSetupLen;//游戏标准设置数据结构的长度<br>
+	unsigned char 			chIsShort;	//==0,是短协议吗? 如果==1则说明是短协议<br>
+	GeneralUserDes			general;//玩家基本信息<br>
+	GameNormalData			gamedata;//游戏标准数据结构<br>
+	GameNormalSetup			setup;//游戏标准设置<br>
+	unsigned char 			chBuf[1];//游戏自定义数据<br>
+}NormalUserDes,*PNormalUserDes;<br>
+<font color=#0000FF>注意,数据结构看上去是固定的,但客户端在获取gamedata及setup数据时应该采用如下方法 :(假设 p是指向此结构的指针)<br>
+GameNormalData *pgnd = (GameNormalData *) (((char *)(&p->general))+p->chGeneralUserDesLen);<br>
+GameNormalSetup *pgns = (GameNormalSetup*) (((char *)pgnd)+p->chGameNormalDataLen);<br>
+也就是说要使用结构头部给出的长度来计算其位置. 这是因为结构内部的每个子结构都有可能发生变化(被追加数据),如果服务器端已经发生变化,而客户端尚未升级,采用固定方式访问数据当然就全错了. 在定义这个最容易发生变化的数据时我们考虑到这点,因此在有效数据前
+加入了子结构长度数据,便于今后升级.<br><br></font>
+玩家基本信息(GeneralUserDes)包括玩家名字,ID,性别,级别等等 : <br>
+typedef struct __tagGeneralUserDes<br>
+{<br>
+	USERID					userid;<br>
+	char	   		szUserName[DJGAME_USERNAME_LEN+2];<br>
+	int		iMoney;//财富<br>
+	int		iMagic;//魔法<br>
+	unsigned char		chGender;<br>
+	unsigned char		chNation;//国家或地区<br>
+	unsigned char		chSupportLanguages;//认识哪些文字(目前注册时有简体中文,繁体中文,英文可供选择)<br>
+	unsigned char	 	chUserType;<br>
+	unsigned int		uGroupID;//加入了哪个全局社团<br>
+	unsigned short		shUnwelcome;//不受欢迎数<br>
+	unsigned int		uBreak;//断线次数<br>
+	unsigned int		uTotal;//总共游戏盘数(所有游戏的总和)<br>
+	unsigned int		uTotalTime;//在线时长<br>
+	
+	unsigned char	   chOS;<br>
+	unsigned char	   chSpeed;<br>
+	unsigned char	   chStatus;//状态 : 正常/断线/被禁止...<br>
+}GeneralUserDes,*PGeneralUserDes;<br>
+此结构中的状态,表明的是全局状态,和游戏状态无关,比如无论他是否游戏中都会发生断线<br><br>
+对于不同游戏我们也抽象出了基本数据结构应用于所有游戏 GameNormalData : <br>
+typedef struct __tagGameNormalData<br>
+{<br>	
+	int 					iScore;	//成绩<br>
+	unsigned int 			uiWins;	//获胜盘数<br>
+	unsigned int 			uiLoses;	//失败盘数<br>
+	unsigned short 			shGroup;	//加入哪个游戏社团<br>
+	unsigned char 			chStatus;	//状态<br>
+	<br>
+	unsigned char			chRoom;	//所在房间号<br>
+	unsigned char			chTable;	//所在桌号<br>
+	unsigned char			chSite;	//所在椅子号<br>
+}GameNormalData,*PGameNormalData;<br><br>
+
+蓝迪的每个游戏均可单独设置一些参数, 这些参数被归结到 游戏标准设置 中 :<br>
+typedef struct __tagGameNormalSetup<br>
+{<br>
+	unsigned char	chLowestSpeed;//不和慢于此速度的玩家游戏<br>
+	unsigned char	chSameIP;//不和相同IP的玩家们同桌<br>
+	unsigned char	chBreakRate;//不和高于此断线率的玩家游戏<br>
+	unsigned char	chXX;//占位符,避免发生对齐错误(前面是3字节)<br>
+	int	iLowestScore;//不和低于此分数的玩家游戏<br>
+	int	iHighestScore;//不和高于此分数的玩家游戏<br>
+}GameNormalSetup,*PGameNormalSetup;<br><br>
+
+<font color=#0000FF>一个完整的标准的玩家描述协议包应该由如下结构顺序构成 : <br>
+DJGameProtocol //协议头<br>
+GameDataHead 	//游戏层协议头<br>
+NormalUserDes	//玩家描述</font>
+
+<br><br><Br>
+同步与异步<br>
+游戏层协议比较复杂,出现了同步和异步数据; 比如玩家坐下,一方面服务器会发送同步数据,告知客户端玩家已成功坐在某个坐位上,另一方面,服务器会在稍后向房间发出广播数据(broadcast),将该玩家坐下的消息告知房间内所有玩家. 成功坐下的玩家将再次收到自己坐下的消息. 由于广播消息被服务器认定为非重要数据,具有延时性,而此时玩家有可能已经更换坐位,所以客户端必需丢弃与自己相关的广播消息(有一个例外: 不能丢弃自己速度变化的广播包,服务器不会单独发送速度改变的包,只存在于广播消息中), 在同步数据中处理自己的状态.<br><br>
+
+在游戏协议层还需要特别注意 DJGAME_PROTOCOL_SUBTYPE_TABLEMAP 子协议, 该子协议将一张(或组)桌子的状态告知客户端; 如上所知,其他玩家的动作属于广播数据,它不仅仅具有延时性,如果服务器很忙它甚至可能被丢弃,以便获得更多时间来处理关键数据; 因此客户端维护的房间状态(哪个用户坐在哪张椅子上,是否举手示意,是否开始游戏...)会和实际情况有差别. 解决这种差别的方法就是 DJGAME_PROTOCOL_SUBTYPE_TABLEMAP 子协议. 当玩家试图坐到一张椅子上时,无论成功与否,服务器都会发送 DJGAME_PROTOCOL_SUBTYPE_TABLEMAP 以便客户端同步桌子状态. DJGAME_PROTOCOL_SUBTYPE_TABLEMAP子协议首先有一个前导数据结构 :<br>
+typedef struct __tagTableMapHead<br>
+{<br>
+	unsigned char chRoom;//房间号<br>
+	unsigned char chSites;//每张桌子拥有的椅子数量<br>
+	unsigned char chBuf[1];//..<br>
+}TableMapHead,*PTableMapHead;<br>
+在实际应用时这个前导数据结构的用处看似不大,正常情况下客户端只能收到本房间的table map,因此这两项都是已知的. TableMapHead中的chBuf开始了真正的table map数据 : <br>
+typedef struct __tagDJGameTableMap<br>
+{<br>
+	unsigned char chTable;//桌号<br>
+	unsigned char chStatus;//桌子状态<br>
+	USERID			userid[1];//玩家ID<br>
+}DJGameTableMap,*PDJGameTableMap;<br>
+每个DJGameTableMap描述一张桌子,userid[0]记录了1号椅子上的玩家,userid[1]记录了2号椅子上的玩家,依此类推; DJGAME_PROTOCOL_SUBTYPE_TABLEMAP可以在一个包中包含多张桌子的table map; 目前的数据结构中没有说明该协议包中包含几张桌子,需要根据 协议头的chTotalLen来计算,未来可能会改进; 为了方便获取table map,protocol.h中定义了两个宏 : <br>
+DJGAME_TABLEMAP_SIZE(__pmaphead) //得到一张桌子的table map的尺寸(字节)<br>
+DJGAME_TABLEMAP_NEXT(__pmaphead,pmap) //从一个table map移动到下一个table map;<br>
+假设 DJGAME_PROTOCOL_SUBTYPE_TABLEMAP 协议包的首字节指针是 p,那么可以按照如下方法获得所有的table map 以便同步桌子状态 :<br>
+DJGameProtocol *pprotocol = (DJGameProtocol*)p;<br>
+if(pprotocol->chType == DJGAME_PROTOCOL_TYPE_GAMEDATA && pprotocol->chSubType == DJGAME_PROTOCOL_SUBTYPE_TABLEMAP )<br>
+{<br>
+	PGameDataHead  pgamehead = (PGameDataHead)pprotocol->chBuf;<br>
+	PTableMapHead	pmaphead = (PTableMapHead)pgamehead->chBuf;<br>
+	PDJGameTableMap pmap = (PDJGameTableMap)pmaphead->chBuf;<br>
+	while( ((int)pmap)-((int)p) < pprotocol->chTotalLen)<br>
+	{<br>
+		....//同步桌子状态<br>
+		pmap = DJGAME_TABLEMAP_NEXT(pmaphead,pmap);<br>
+	}<br>
+}<br>
+
+在游戏层还有部分子协议是和游戏进度相关的,为什么没有把它们放入进度层呢?因为这些子协议是所有游戏的共同点,而进度层协议则是游戏的特性,我们是按照这一点来分层的; 由于这个特点,此类子协议往往在Base库和游戏模块中都有相关代码; 这些子协议包括 :<br>
+DJGAME_PROTOCOL_SUBTYPE_CURRENT_GAMEINFO <br>
+每次开始游戏时服务器都会发送这个子协议,以便同步游戏规则等数据, 它所携带的数据由具体游戏自己定义;<br><br>
+DJGAME_PROTOCOL_SUBTYPE_WAIT_USER2<br>
+游戏等待, 游戏其实就是等待相关玩家数据,处理玩家玩家,继续等待玩家数据的循环过程, 此子协议就是发送一个等待消息 :<br>
+typedef struct __tagDJGameWaitUser2<br>
+{<br>
+	unsigned char chTable;//桌号<br>
+	unsigned char chTableStatus;//桌子状态<br>
+	unsigned short shTimeout;//等待时长<br>
+	unsigned short 	shWaitMask;//等待掩码,每个坐位占1bit,例如1表示等待1号坐位上的玩家,4表示等待3号坐位上的玩家,0x0F表示等待 1,2,3,4坐位的玩家(多人等待)<br>
+}DJGameWaitUser2,*PDJGameWaitUser2;<br><br>
+
+DJGAME_PROTOCOL_SUBTYPE_GAMEOVER2<br>
+游戏结束后的成绩报告 :<br>
+typedef struct __tagDJGameOver<br>
+{<br>
+	unsigned char chSites;//包含几个坐位成绩(至少一个)<br>
+	DJGameOverSite site[1];//见下<br>
+}DJGameOver,*PDJGameOver;<br>
+
+typedef struct __tagDJGameOverSite<br>
+{<br>
+	unsigned char chSite;//坐位号<br>
+	int 			score;//成绩<br>
+}DJGameOverSite,*PDJGameOverSite;<br><br>
+DJGAME_PROTOCOL_SUBTYPE_TABLE2IDLE<br>
+游戏桌解散<br><br>
+
+<font color=#0000FF>进度层协议 是真正的游戏协议</font>它负责具体实现各种游戏,这类协议由游戏自己定义并在游戏模块中实现,它属于游戏层协议的一个子协议 :DJGAME_PROTOCOL_SUBTYPE_GAMETRACE2<br>
+进度层协议属于游戏自定义协议,但为了确保协议的统一性和有效性,它的前导数据结构是在protocol.h中定义的:<br>
+typedef struct __GeneralGameTrace2Head<br>
+{<br>
+	unsigned char 		chTable;//桌号,因为蓝迪游戏允许玩家同时打开多张游戏桌子(只能在一张桌子上游戏,但可以同时旁观多张桌子),因此gametrace必需说明自己隶属哪张桌子<br>
+	unsigned char		chType;//trace 类型,游戏自定义<br>
+	unsigned char		chSite;//坐位号, 本trace是由谁发起的<br>
+	unsigned char		chBufLen;//下面的chBuf的长度<br>
+	unsigned char		chBuf[1];//trace数据<br>
+}GeneralGameTrace2Head,*PGeneralGameTrace2Head;<br>
+不同游戏gametrace 完全不同,例如在中国象棋中我们定义了如下trace(xqprofile.h) :<Br>
+XIANGQI_GAMETRACE_ADJUST //同步棋盘状态,(棋盘每个位置上有什么棋子)<Br>
+XIANGQI_GAMETRACE_MOVE	//走棋<Br>
+XIANGQI_GAMETRACE_REQUESTRULE	//请求设置规则,在自由房间棋局开始前需要双方讨论规则<Br>
+XIANGQI_GAMETRACE_SETRULE	//设置规则,<Br>
+XIANGQI_GAMETRACE_SURRENDER //认输<Br>
+XIANGQI_GAMETRACE_REQUESTDUELS	//求和<Br>
+
+XIANGQI_GAMETRACE_REPEAT		//全局同形,下棋时出现全局同形的局面(重复了以前出现的局面,比如长将就会造成全局同形)<Br><Br>
+
+由中国象棋的例子就可以看出来,发送不同的gametrace,然后配合 DJGAME_PROTOCOL_SUBTYPE_WAIT_USER2 子协议 就可以很好的控制游戏进度. 其他游戏也同此理;<Br><br>
+
+<font color=#0000FF>游戏自定义协议</font><br>
+在GameTrace基础上,一些复杂游戏还可自定义下一层协议. 按照我们开始的设想,比如麻将游戏当玩家打出一张牌后其他玩家有吃碰杠胡的选择需要再来一层协议,但在具体实践中,我们使用适当的WaitMask和多个GameTrace相结合就很好的解决了这些问题,因此尚未定义过下一层协议,目前已有的游戏都在GameTrace层就完成了所有控制; <br><br>
+
+<font color=#0000FF>广播消息 DJGAME_PROTOCOL_TYPE_BROADCAST	 <Br></font>
+游戏协议还有一大类数据是广播消息,它简要说明房间内其他玩家的动作或信息的改变 :<Br>
+#define BROADCAST_BUFFER_SIZE			4<Br>
+typedef struct __tagBroadcastHead<Br>
+{<Br>
+	unsigned char	chGameClass;<Br>
+	unsigned char	chGame;<Br>
+	unsigned char	chRoom;<Br>
+	unsigned char	chMessages; //本协议包中包含多少条广播消息<Br>
+}BroadcastHead,*PBroadcastHead;<Br>
+从这个前导数据结构可以看出来广播消息其实可以归入游戏层(它的前两字节就是chGameClass,chGame),但由于它具有一些独特的性质,我们将它提高了一个级别,一个广播包可以包含多个广播消息,每个广播消息用下面的结构描述 :<br>
+typedef struct __tagBroadcastInfo<Br>
+{<Br>
+	USERID			userid;//玩家ID<Br>
+	unsigned char	chType;//消息类别<Br>
+	unsigned char	chMsg;//消息<Br>
+	unsigned char	chBuf[BROADCAST_BUFFER_SIZE];//消息数据<Br>
+}BroadcastInfo,*PBroadcastInfo;<Br><br>
+
+
+<font color=#0000FF>服务器端基本概念说明</font><br>
+蓝迪游戏是网络游戏,因此了解服务器端的一些基本概念对客户端也是很重要的. <br>
+首先,在服务器端数据是分级处理的,GameTrace协议的级别最高,能够保证被优先处理(逻辑上可以理解为同步处理,但实际上只能做到争取同步处理),大厅协议也是重要数据,不会被丢弃; 而玩家登录数据(包括获取游戏列表,服务器列表,登录,搜索好友...)则是普通数据,会被pending下来在适当时候处理,在服务器极端忙的情况下会按顺序丢弃; 所有的房间广播数据均是次要数据,虽然同样是pending到适当时候处理,但被丢弃的可能性最大,对客户端而言这类数据只是提示性的,不能理解为服务器同步数据(比如一个玩家坐下消息到达时,该玩家可能已经站起,并且站起的消息已被丢弃不可能收到了).但这并不会给客户端造成混乱,使用前面说过的table map子协议可以在任意时间完成与服务器同步的工作(即使客户端在某一时间段关闭了广播消息,在需要恢复的时候只要请求所有桌子的table map即可完成同步,且数据量非常小)<br><br>
+其次,服务器使用组的概念来管理用户; 服务器端的shell(对应客户端Hall)为下层提供了一个功能强大的组管理平台,无论是游戏房间还是游戏桌,乃至多人聊天都是一个用户组; 当玩家登录进服务器后,shell将它加入以下组中: 服务器用户组--包含所有登录进来的玩家, 游戏用户组--包含所有登录到同一游戏中的玩家, 房间组--包含所有同一游戏房间内的玩家; 而玩家坐到某张椅子上以后其实就是被加入对应的桌子组中; shell为下层提供2种发送数据的方法 : 1.发送给指定用户, 2.发送给指定组(所有组中玩家都可收到); 组ID是和玩家ID同样重要的标识,组ID也是4字节的数字,它按照如下方法构成 : (高字节)游戏类别ID 游戏ID 房间ID 桌号(低字节); 例如拖拉机游戏房间3第10张桌子的组ID是 0x0201030A, 而该房间的组ID是 0x02010300,同理该游戏的组ID是 0x02010000; 不过服务器端限止非管理员只能往自己所在组发送数据; 其中对于游戏类别ID一字节我们定义了一些特殊含义的ID,比如SYSTEM_GROUP,CHAT_GROUP, 这样就允许创建虚拟组(没有对应的房间及桌子), 比如玩家可以创建聊天组实现多人聊天(目前客户端尚不支持); 基于组管理的概念,有些信息反应到协议上就成了加入某个组,或退出某个组(比如旁观游戏);<br><br>
+
+本文档会逐渐完善,最终实现对全部协议的说明,请您留意蓝迪网站.
+
+
+
+
+
+
+</body></html>

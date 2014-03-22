@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+        <file>ChineseChessRes/lang/ChineseChess_zh_CN.qm</file>
+    </qresource>
+</RCC>

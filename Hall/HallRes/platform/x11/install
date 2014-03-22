@@ -1,0 +1,58 @@
+#! /bin/bash
+
+mkdir ~/djgame2
+mkdir ~/djgame2/chat
+cp -rp * ~/djgame2
+
+cd ~/djgame2
+echo $HOME
+echo "#! /bin/bash
+cd ~/djgame2
+LANG=\"zh_CN.utf8\"
+export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:./Qt/:./
+./Hall" > ./startdjg
+
+chmod -R 777 ~/djgame2/startdjg
+
+
+if [ -d ~/Desktop ]
+then
+cd ~/Desktop
+echo "[Desktop Entry]
+Encoding=UTF-8
+Version=2.0
+Type=Application
+Exec=$HOME/djgame2/startdjg
+TryExec=
+Icon=$HOME/djgame2/logo.png
+X-GNOME-DocPath=
+Terminal=false
+Name=蓝迪游戏 II
+Name[zh_CN]=蓝迪游戏 II
+GenericName[zh_CN]=蓝迪游戏 II
+Comment[zh_CN]=蓝迪游戏 II" > ./BlueDJ2.desktop
+
+chmod 755 ./BlueDJ2.desktop
+
+fi
+
+if [ -d ~/.gnome-desktop ]
+then
+cd ~/.gnome-desktop
+echo "[Desktop Entry]
+Encoding=UTF-8
+Version=2.0
+Type=Application
+Exec=$HOME/djgame2/startdjg
+TryExec=
+Icon=$HOME/djgame2/logo.png
+X-GNOME-DocPath=
+Terminal=false
+Name=蓝迪游戏 II
+Name[zh_CN]= 蓝迪游戏 II
+GenericName[zh_CN]=蓝迪游戏 II
+Comment[zh_CN]=蓝迪游戏 II" > ./BlueDJ2.desktop
+
+chmod 755 ./BlueDJ2.desktop
+
+fi

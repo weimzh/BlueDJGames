@@ -1,0 +1,38 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file>ShisenshoRes/image/base/background.png</file>
+		<file>ShisenshoRes/image/base/game.png</file>
+		<file>ShisenshoRes/image/base/floor.png</file>
+		<file>ShisenshoRes/image/base/table1.png</file>
+		<file>ShisenshoRes/image/base/seat1_1.png</file>
+		
+		<file>ShisenshoRes/image/suit1/1.png</file>
+		<file>ShisenshoRes/image/suit1/2.png</file>
+		<file>ShisenshoRes/image/suit1/3.png</file>
+		<file>ShisenshoRes/image/suit1/4.png</file>
+		<file>ShisenshoRes/image/suit1/5.png</file>
+		<file>ShisenshoRes/image/suit1/6.png</file>
+		<file>ShisenshoRes/image/suit1/7.png</file>
+		<file>ShisenshoRes/image/suit1/8.png</file>
+		<file>ShisenshoRes/image/suit1/9.png</file>
+		<file>ShisenshoRes/image/suit1/10.png</file>
+		<file>ShisenshoRes/image/suit1/11.png</file>
+		<file>ShisenshoRes/image/suit1/12.png</file>
+		<file>ShisenshoRes/image/suit1/13.png</file>
+		<file>ShisenshoRes/image/suit1/14.png</file>
+		<file>ShisenshoRes/image/suit1/15.png</file>
+		<file>ShisenshoRes/image/suit1/16.png</file>
+		<file>ShisenshoRes/image/suit1/17.png</file>
+		<file>ShisenshoRes/image/suit1/18.png</file>
+		<file>ShisenshoRes/image/suit1/19.png</file>
+		<file>ShisenshoRes/image/suit1/20.png</file>
+		<file>ShisenshoRes/image/suit1/21.png</file>
+		<file>ShisenshoRes/image/suit1/22.png</file>
+		<file>ShisenshoRes/image/suit1/23.png</file>
+		<file>ShisenshoRes/image/suit1/24.png</file>
+		<file>ShisenshoRes/image/suit1/25.png</file>
+		<file>ShisenshoRes/image/suit1/26.png</file>
+		<file>ShisenshoRes/image/suit1/27.png</file>
+		<file>ShisenshoRes/image/suit1/28.png</file>
+	</qresource>
+</RCC>

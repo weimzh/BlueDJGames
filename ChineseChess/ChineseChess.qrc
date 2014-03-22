@@ -1,0 +1,28 @@
+<!DOCTYPE RCC><RCC version="1.0">
+	<qresource>
+		<file>ChineseChessRes/image/base/background.png</file>
+		<file>ChineseChessRes/image/base/floor.png</file>
+		<file>ChineseChessRes/image/base/game.png</file>
+		<file>ChineseChessRes/image/base/table2.png</file>
+		<file>ChineseChessRes/image/base/seat2_1.png</file>
+		<file>ChineseChessRes/image/base/seat2_2.png</file>
+		<file>ChineseChessRes/image/cchessb1.png</file>
+		<file>ChineseChessRes/image/pigeon.png</file>
+		<file>ChineseChessRes/image/focus.png</file>
+		<file>ChineseChessRes/image/start.png</file>
+		<file>ChineseChessRes/image/chips1/01.png</file>
+		<file>ChineseChessRes/image/chips1/02.png</file>
+		<file>ChineseChessRes/image/chips1/03.png</file>
+		<file>ChineseChessRes/image/chips1/04.png</file>
+		<file>ChineseChessRes/image/chips1/05.png</file>
+		<file>ChineseChessRes/image/chips1/06.png</file>
+		<file>ChineseChessRes/image/chips1/07.png</file>
+		<file>ChineseChessRes/image/chips1/09.png</file>
+		<file>ChineseChessRes/image/chips1/0a.png</file>
+		<file>ChineseChessRes/image/chips1/0b.png</file>
+		<file>ChineseChessRes/image/chips1/0c.png</file>
+		<file>ChineseChessRes/image/chips1/0d.png</file>
+		<file>ChineseChessRes/image/chips1/0e.png</file>
+		<file>ChineseChessRes/image/chips1/0f.png</file>
+	</qresource>
+</RCC>
